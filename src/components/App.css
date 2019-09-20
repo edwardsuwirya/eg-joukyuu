@@ -1,0 +1,8 @@
+.active-menu{
+    color: orangered !important;
+    text-decoration: underline orangered;
+}
+
+.inactive-menu{
+    color: whitesmoke !important;
+}

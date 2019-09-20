@@ -8,10 +8,17 @@ class KanjiDetail extends React.Component {
     modalUnmount = () => {
         this.props.selectKanji('')
     }
+
+    onApprove = () => {
+        console.log('approve');
+    }
     render() {
+        const buttonApprove = (
+            <div onClick={this.onApprove} className="ui approve button">Approve</div>
+        )
         if (this.props.kanji.kanji) {
             return (
-                <Modal unMount={this.modalUnmount} content={this.props.kanji.kanji}>
+                <Modal unMount={this.modalUnmount} content={this.props.kanji.kanji} action={buttonApprove}>
 
                 </Modal>
             )

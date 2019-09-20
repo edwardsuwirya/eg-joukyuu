@@ -16,7 +16,7 @@ class Modal extends React.Component {
                         <p>{this.props.content}</p>
                     </div>
                     <div className="actions">
-                        <div className="ui approve button">Approve</div>
+                        {this.props.action}
                         <div onClick={() => this.removeMe()} className="ui cancel button">Cancel</div>
 
                     </div>

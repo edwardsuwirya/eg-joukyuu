@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { selectKanji, changeViewKanji } from '../actions';
+import KanjiDetail from './KanjiDetail';
+
 
 class KanjiList extends React.Component {
     hideAndShow(status) {
@@ -21,18 +23,20 @@ class KanjiList extends React.Component {
         }
     }
 
+
+
     renderList() {
         const hideYomi = !this.props.kanjiViews.showYomi ? {} : { display: 'none' };
         const hideKaki = !this.props.kanjiViews.showKanji ? {} : { display: 'none' };
         return this.props.kanjis.map((kanji) => {
             return (
                 <tr key={kanji.id}>
-                    <td data-label="漢字"><h2 style={hideKaki}>{kanji.kanji}</h2></td>
+                    <td data-label="漢字"><h3 style={hideKaki}>{kanji.kanji}</h3></td>
                     <td data-label="読み方"><span style={hideYomi}>{kanji.yomikata}</span></td>
                     <td data-label="意味">{kanji.imi}</td>
                     <td data-label="第一">{kanji.dai}</td>
                     <td>
-                        <button onClick={() => this.props.selectKanji(kanji)} className="ui button primary">Select</button>
+                        <button onClick={() => this.props.selectKanji(kanji)} className="ui orange basic button">Select</button>
                     </td>
                 </tr>
             );
@@ -40,33 +44,42 @@ class KanjiList extends React.Component {
     }
     render() {
         return (
-            <div>
-                <button onClick={() => this.hideAndShow('kakikata')} className="ui button primary">{this.props.kanjiViews.labelKanji}</button>
-                <button onClick={() => this.hideAndShow('yomikata')} className="ui button primary">{this.props.kanjiViews.labelYomi}</button>
-                <table className="ui celled table">
-                    <thead>
-                        <tr>
-                            <th>漢字</th>
-                            <th>読み方</th>
-                            <th>意味</th>
-                            <th>第一</th>
-                            <th></th>
-                        </tr></thead>
-                    <tbody>
-                        {this.renderList()}
-                    </tbody>
-                </table>
+            <div style={{ marginTop: '20px' }}>
+                <div className="ui raised segment">
+                    <div className="ui green ribbon label"><h3>{this.props.title}</h3></div>
+
+                    <div style={{ marginTop: '20px' }}>
+                        <button onClick={() => this.hideAndShow('kakikata')} className="ui basic button green">{this.props.kanjiViews.labelKanji}</button>
+                        <button onClick={() => this.hideAndShow('yomikata')} className="ui basic button green">{this.props.kanjiViews.labelYomi}</button>
+                        <table className="ui celled table">
+                            <thead>
+                                <tr>
+                                    <th><h2>漢字</h2></th>
+                                    <th><h2>読み方</h2></th>
+                                    <th><h2>意味</h2></th>
+                                    <th><h2>第一</h2></th>
+                                    <th></th>
+                                </tr></thead>
+                            <tbody>
+                                {this.renderList()}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <KanjiDetail />
             </div>
+
         )
+
     }
 }
 
 const mapStateToProps = (state) => {
-    console.log(state);
-    return { kanjis: state.kanjiReducer,  kanjiViews: state.changeViewKanjiReducer };
+    return { kanjis: state.kanjiReducer, kanjiViews: state.changeViewKanjiReducer, userInfo: state.userInfoReducer };
 }
 
 export default connect(mapStateToProps, {
     selectKanji: selectKanji,
-    changeViewKanji: changeViewKanji
+    changeViewKanji: changeViewKanji,
+
 })(KanjiList);
