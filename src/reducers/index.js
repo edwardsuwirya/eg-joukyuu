@@ -3,7 +3,11 @@ import { combineReducers } from "redux";
 const kanjiReducer = () => {
     return [
         { id: '1', kanji: '景色', yomikata: 'けしき', imi: 'Pemandangan', dai: '1' },
-        { id: '2', kanji: '印象的', yomikata: 'いんしょうてき', imi: 'Menakjubkan', dai: '1' }
+        { id: '2', kanji: '印象的', yomikata: 'いんしょうてき', imi: 'Menakjubkan', dai: '1' },
+
+        { id: '3', kanji: '伝統', yomikata: 'でんとう', imi: 'tradisi', dai: '1' },
+        { id: '4', kanji: '歴史的', yomikata: 'れきしてき', imi: 'bersejarah', dai: '1' },
+        { id: '5', kanji: '往復', yomikata: 'おうふく', imi: 'Pulang Pergi', dai: '1' },
     ];
 };
 
@@ -17,7 +21,7 @@ const selectedKanjiReducer = (selectedKanji = '', action) => {
 
 };
 
-const changeViewKanjiReducer = (selectedKanji = { showKanji: false, labelKanji: 'Hide Kanji', showYomi: false, labelYomi: 'Hide Yomi Kata' }, action) => {
+const changeViewKanjiReducer = (selectedKanji = { showKanji: false, labelKanji: '漢字を隠す', showYomi: false, labelYomi: '読み方を隠す' }, action) => {
     if (action.type === 'VIEW_KANJI_CHANGE') {
         return action.payload;
     } else {

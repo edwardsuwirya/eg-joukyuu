@@ -11,9 +11,7 @@ class App extends React.Component {
         const arr = this.props.userInfo.features;
         if (arr) {
             const isAllowedFeature = arr.includes(priv);
-
-            if (isAllowedFeature)
-                return true;
+            return isAllowedFeature;
         } else {
             return false;
         }
@@ -21,15 +19,17 @@ class App extends React.Component {
 
     renderContent(moduleName) {
         const isHaveKanjiPriv = this.onCheckPrivileges(moduleName);
-        let showKanjiList = null;
         if (isHaveKanjiPriv) {
-            this.props.setActiveModule({ moduleName: moduleName, moduleComponent: <KanjiList title={moduleName} /> })
+            switch (moduleName) {
+                case 'kanji': this.props.setActiveModule({ moduleName: moduleName, moduleComponent: <KanjiList title={moduleName} /> }); break;
+                default: this.props.setActiveModule({ moduleName: 'default', moduleComponent: <div /> })
+            }
+
         }
     }
 
     renderActiveMenu(currentModule) {
         const activeTitle = this.props.activeModule.moduleName;
-        console.log(activeTitle)
         if (currentModule === activeTitle) {
             return 'item active-menu'
         } else {
@@ -85,7 +85,6 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state)
     return { userInfo: state.userInfoReducer, activeModule: state.activeModuleReducer };
 }
 

@@ -11,12 +11,12 @@ class KanjiList extends React.Component {
                 showKanji: this.props.kanjiViews.showKanji,
                 labelKanji: this.props.kanjiViews.labelKanji,
                 showYomi: !this.props.kanjiViews.showYomi,
-                labelYomi: this.props.kanjiViews.showYomi ? 'Hide Yomi Kata' : 'Show Yomi Kata'
+                labelYomi: this.props.kanjiViews.showYomi ? '読み方を隠す' : '読み方を見せる'
             })
         } else if (status === 'kakikata') {
             this.props.changeViewKanji({
                 showKanji: !this.props.kanjiViews.showKanji,
-                labelKanji: this.props.kanjiViews.showKanji ? 'Hide Kanji' : 'Show Kanji',
+                labelKanji: this.props.kanjiViews.showKanji ? '漢字を隠す' : '漢字を見せる',
                 showYomi: this.props.kanjiViews.showYomi,
                 labelYomi: this.props.kanjiViews.labelYomi
             });
@@ -36,7 +36,7 @@ class KanjiList extends React.Component {
                     <td data-label="意味">{kanji.imi}</td>
                     <td data-label="第一">{kanji.dai}</td>
                     <td>
-                        <button onClick={() => this.props.selectKanji(kanji)} className="ui orange basic button">Select</button>
+                        <button onClick={() => this.props.selectKanji(kanji)} className="ui orange basic button">選ぶ</button>
                     </td>
                 </tr>
             );

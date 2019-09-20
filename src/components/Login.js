@@ -12,7 +12,7 @@ class Login extends React.Component {
 
     onLoginAuthenticated() {
         if (this.props.login === '123456') {
-            this.props.setUserInfo({ fullName: 'Edo', features: ['kanji'] });
+            this.props.setUserInfo({ fullName: 'Edo', features: ['kanji','bunpou'] });
         } else {
             this.props.setErrorInfo('Wrong pass code');
         }
